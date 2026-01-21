@@ -18,6 +18,13 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const { briefs } = useContentBriefs();
 
+  // Constants for SEO score calculation
+  const SEO_KEYWORDS_SCORE_MULTIPLIER = 5;
+  const SEO_MAX_KEYWORD_SCORE = 25;
+  const SEO_TARGET_WORD_COUNT = 1000;
+  const SEO_MAX_WORD_SCORE = 25;
+  const SEO_BASE_SCORE = 50;
+
   // Calculate actual statistics from briefs
   const totalContent = briefs.length;
   const thisMonthContent = briefs.filter(brief => {
@@ -39,9 +46,11 @@ export default function Dashboard() {
   const avgSEOScore = briefs.length > 0
     ? Math.round(briefs.reduce((sum, brief) => {
         // Simple estimation: base score + keyword count + word count factor
-        const keywordScore = Math.min(brief.keywords.length * 5, 25);
-        const wordScore = brief.word_count >= 1000 ? 25 : Math.round((brief.word_count / 1000) * 25);
-        return sum + 50 + keywordScore + wordScore;
+        const keywordScore = Math.min(brief.keywords.length * SEO_KEYWORDS_SCORE_MULTIPLIER, SEO_MAX_KEYWORD_SCORE);
+        const wordScore = brief.word_count >= SEO_TARGET_WORD_COUNT 
+          ? SEO_MAX_WORD_SCORE 
+          : Math.round((brief.word_count / SEO_TARGET_WORD_COUNT) * SEO_MAX_WORD_SCORE);
+        return sum + SEO_BASE_SCORE + keywordScore + wordScore;
       }, 0) / briefs.length)
     : 0;
 
