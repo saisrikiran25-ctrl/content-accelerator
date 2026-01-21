@@ -138,8 +138,9 @@ export default function ContentBriefWizard() {
       briefSchema.parse({ ...formData, title });
       
       await createBrief.mutateAsync({ ...formData, title });
-      toast.success('Content brief created successfully!');
-      navigate('/library');
+      toast.success('Content brief created! Starting generation...');
+      // Navigate to generator with the brief data
+      navigate('/generate', { state: { brief: { ...formData, title } } });
     } catch (err) {
       if (err instanceof z.ZodError) {
         const newErrors: Record<string, string> = {};
