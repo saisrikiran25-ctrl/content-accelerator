@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   User,
   Building2,
-  Mail,
   Briefcase,
   Sparkles,
   Moon,
@@ -135,6 +134,10 @@ export default function Settings() {
       setIsDirty(hasChanges);
     }
   }, [displayName, companyName, vertical, profile]);
+
+  // Check if form is valid and can be saved
+  const isFormValid = displayName.trim().length >= 2 && displayName.trim().length <= 50;
+  const canSave = isFormValid && (isDirty || !profile) && !isSaving;
 
   const handleSave = async () => {
     // Validation
@@ -312,24 +315,6 @@ export default function Settings() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-sm font-medium">
-                  Email
-                </Label>
-                <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="email"
-                    value={user?.email || ''}
-                    disabled
-                    className="pl-10 bg-secondary/50 cursor-not-allowed"
-                  />
-                </div>
-                <p className="text-xs text-muted-foreground">
-                  Email cannot be changed
-                </p>
-              </div>
-
-              <div className="space-y-2">
                 <Label htmlFor="vertical" className="text-sm font-medium">
                   Industry Vertical <span className="text-destructive">*</span>
                 </Label>
@@ -353,10 +338,10 @@ export default function Settings() {
               <div className="pt-4 flex items-center gap-3">
                 <Button
                   onClick={handleSave}
-                  disabled={!isDirty || isSaving}
+                  disabled={!canSave}
                   className={cn(
                     'transition-all duration-200 relative',
-                    isDirty && 'hover:scale-105 shadow-lg shadow-primary/20'
+                    canSave && 'hover:scale-105 shadow-lg shadow-primary/20'
                   )}
                 >
                   {isSaving ? (
