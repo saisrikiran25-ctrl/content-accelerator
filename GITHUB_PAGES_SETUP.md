@@ -6,7 +6,7 @@ Follow these 3 simple steps to deploy your app to GitHub Pages!
 
 1. Go to your repository: https://github.com/saisrikiran25-ctrl/content-accelerator
 2. Click **Settings** → **Secrets and variables** → **Actions**
-3. Click **New repository secret** and add each of these:
+3. Click **New repository secret** and add each of these (values from your `.env` file):
 
 ```
 Name: VITE_SUPABASE_URL
@@ -22,6 +22,8 @@ Value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFo
 Name: VITE_SUPABASE_PROJECT_ID
 Value: qharssnwpweoiderjylv
 ```
+
+> 💡 **Note**: These are your project's Supabase credentials. The publishable key is safe to use in client-side code.
 
 ## 🌐 Step 2: Enable GitHub Pages (1 minute)
 

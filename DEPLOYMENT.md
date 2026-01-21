@@ -19,7 +19,7 @@ You just need to configure GitHub repository settings and secrets!
 2. Click on **Settings** (top menu)
 3. In the left sidebar, click **Secrets and variables** → **Actions**
 4. Click **New repository secret** button
-5. Add the following three secrets one by one:
+5. Add the following three secrets one by one (get values from your `.env` file):
 
    **Secret 1:**
    - Name: `VITE_SUPABASE_URL`
@@ -32,6 +32,8 @@ You just need to configure GitHub repository settings and secrets!
    **Secret 3:**
    - Name: `VITE_SUPABASE_PROJECT_ID`
    - Value: `qharssnwpweoiderjylv`
+
+> 💡 **Note**: The Supabase publishable key is designed to be used in client-side code and is safe to include in your deployed app.
 
 ### Step 2: Enable GitHub Pages
 
