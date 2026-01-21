@@ -1,7 +1,7 @@
 // Database types for ContentAccelerator
 
 export type VerticalType = 'legal' | 'healthcare' | 'ecommerce' | 'tech' | 'accounting' | 'finance' | 'real_estate' | 'custom';
-export type ContentType = 'blog' | 'linkedin' | 'case_study' | 'product_description' | 'email' | 'landing_page';
+export type ContentType = 'blog' | 'article' | 'case_study' | 'product_description' | 'email' | 'landing_page';
 export type ContentStatus = 'draft' | 'scheduled' | 'published' | 'archived';
 
 export interface Profile {

@@ -77,7 +77,7 @@ export default function ContentCalendar() {
           <div>
             <h1 className="text-2xl font-semibold text-foreground">Content Calendar</h1>
             <p className="text-muted-foreground">
-              Plan and schedule your content across channels.
+              Plan your content schedule and set reminders.
             </p>
           </div>
           <Button

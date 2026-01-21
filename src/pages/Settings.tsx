@@ -252,7 +252,7 @@ export default function Settings() {
         >
           <h1 className="text-2xl font-semibold text-foreground">Settings</h1>
           <p className="text-muted-foreground">
-            Manage your account, integrations, and preferences.
+            Manage your account and content preferences.
           </p>
         </motion.div>
 
