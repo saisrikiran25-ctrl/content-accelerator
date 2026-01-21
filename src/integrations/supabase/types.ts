@@ -14,7 +14,188 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      brand_voices: {
+        Row: {
+          complexity: number | null
+          confidence: number | null
+          created_at: string
+          formality: number | null
+          id: string
+          is_active: boolean | null
+          name: string
+          sample_phrases: string[] | null
+          updated_at: string
+          user_id: string
+          warmth: number | null
+        }
+        Insert: {
+          complexity?: number | null
+          confidence?: number | null
+          created_at?: string
+          formality?: number | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          sample_phrases?: string[] | null
+          updated_at?: string
+          user_id: string
+          warmth?: number | null
+        }
+        Update: {
+          complexity?: number | null
+          confidence?: number | null
+          created_at?: string
+          formality?: number | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          sample_phrases?: string[] | null
+          updated_at?: string
+          user_id?: string
+          warmth?: number | null
+        }
+        Relationships: []
+      }
+      content_briefs: {
+        Row: {
+          additional_notes: string | null
+          content_type: Database["public"]["Enums"]["content_type"]
+          created_at: string
+          id: string
+          keywords: string[] | null
+          status: Database["public"]["Enums"]["content_status"] | null
+          target_audience: string | null
+          title: string
+          tone: string | null
+          topic: string | null
+          updated_at: string
+          user_id: string
+          word_count: number | null
+        }
+        Insert: {
+          additional_notes?: string | null
+          content_type?: Database["public"]["Enums"]["content_type"]
+          created_at?: string
+          id?: string
+          keywords?: string[] | null
+          status?: Database["public"]["Enums"]["content_status"] | null
+          target_audience?: string | null
+          title: string
+          tone?: string | null
+          topic?: string | null
+          updated_at?: string
+          user_id: string
+          word_count?: number | null
+        }
+        Update: {
+          additional_notes?: string | null
+          content_type?: Database["public"]["Enums"]["content_type"]
+          created_at?: string
+          id?: string
+          keywords?: string[] | null
+          status?: Database["public"]["Enums"]["content_status"] | null
+          target_audience?: string | null
+          title?: string
+          tone?: string | null
+          topic?: string | null
+          updated_at?: string
+          user_id?: string
+          word_count?: number | null
+        }
+        Relationships: []
+      }
+      content_pieces: {
+        Row: {
+          brief_id: string | null
+          compliance_flags: Json | null
+          content: string | null
+          created_at: string
+          id: string
+          published_at: string | null
+          readability_score: number | null
+          scheduled_at: string | null
+          seo_score: number | null
+          status: Database["public"]["Enums"]["content_status"] | null
+          title: string
+          updated_at: string
+          user_id: string
+          word_count: number | null
+        }
+        Insert: {
+          brief_id?: string | null
+          compliance_flags?: Json | null
+          content?: string | null
+          created_at?: string
+          id?: string
+          published_at?: string | null
+          readability_score?: number | null
+          scheduled_at?: string | null
+          seo_score?: number | null
+          status?: Database["public"]["Enums"]["content_status"] | null
+          title: string
+          updated_at?: string
+          user_id: string
+          word_count?: number | null
+        }
+        Update: {
+          brief_id?: string | null
+          compliance_flags?: Json | null
+          content?: string | null
+          created_at?: string
+          id?: string
+          published_at?: string | null
+          readability_score?: number | null
+          scheduled_at?: string | null
+          seo_score?: number | null
+          status?: Database["public"]["Enums"]["content_status"] | null
+          title?: string
+          updated_at?: string
+          user_id?: string
+          word_count?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "content_pieces_brief_id_fkey"
+            columns: ["brief_id"]
+            isOneToOne: false
+            referencedRelation: "content_briefs"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          company_name: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          onboarding_completed: boolean | null
+          updated_at: string
+          user_id: string
+          vertical: Database["public"]["Enums"]["vertical_type"] | null
+        }
+        Insert: {
+          company_name?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          onboarding_completed?: boolean | null
+          updated_at?: string
+          user_id: string
+          vertical?: Database["public"]["Enums"]["vertical_type"] | null
+        }
+        Update: {
+          company_name?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          onboarding_completed?: boolean | null
+          updated_at?: string
+          user_id?: string
+          vertical?: Database["public"]["Enums"]["vertical_type"] | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +204,23 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      content_status: "draft" | "scheduled" | "published" | "archived"
+      content_type:
+        | "blog"
+        | "linkedin"
+        | "case_study"
+        | "product_description"
+        | "email"
+        | "landing_page"
+      vertical_type:
+        | "legal"
+        | "healthcare"
+        | "ecommerce"
+        | "tech"
+        | "accounting"
+        | "finance"
+        | "real_estate"
+        | "custom"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +347,26 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      content_status: ["draft", "scheduled", "published", "archived"],
+      content_type: [
+        "blog",
+        "linkedin",
+        "case_study",
+        "product_description",
+        "email",
+        "landing_page",
+      ],
+      vertical_type: [
+        "legal",
+        "healthcare",
+        "ecommerce",
+        "tech",
+        "accounting",
+        "finance",
+        "real_estate",
+        "custom",
+      ],
+    },
   },
 } as const
