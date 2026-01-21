@@ -350,13 +350,13 @@ export default function Settings() {
                 </p>
               </div>
 
-              <div className="pt-4">
+              <div className="pt-4 flex items-center gap-3">
                 <Button
                   onClick={handleSave}
                   disabled={!isDirty || isSaving}
                   className={cn(
-                    'transition-all duration-200',
-                    isDirty && 'hover:scale-105'
+                    'transition-all duration-200 relative',
+                    isDirty && 'hover:scale-105 shadow-lg shadow-primary/20'
                   )}
                 >
                   {isSaving ? (
@@ -371,6 +371,17 @@ export default function Settings() {
                     </>
                   )}
                 </Button>
+                {isDirty && !isSaving && (
+                  <motion.span
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -10 }}
+                    className="text-sm text-muted-foreground flex items-center gap-1"
+                  >
+                    <span className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
+                    Unsaved changes
+                  </motion.span>
+                )}
               </div>
             </CardContent>
           </Card>

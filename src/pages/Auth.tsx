@@ -102,15 +102,15 @@ export default function Auth() {
       <div className="hidden lg:flex lg:w-1/2 bg-secondary/30 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10" />
         
-        <div className="relative z-10 flex flex-col justify-between p-12 w-full">
-          <div className="flex items-center gap-3">
+        <div className="relative z-10 flex flex-col p-12 w-full">
+          <div className="flex items-center gap-3 mb-16">
             <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
               <Zap className="h-5 w-5 text-primary-foreground" />
             </div>
             <span className="text-xl font-semibold text-foreground">ContentAccel</span>
           </div>
 
-          <div className="space-y-8">
+          <div className="space-y-6 flex-1 flex flex-col justify-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
