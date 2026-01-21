@@ -5,7 +5,7 @@ import { useAuth } from '@/lib/auth';
 import { useProfile } from '@/hooks/useProfile';
 import Sidebar from './Sidebar';
 import NotificationCenter from '@/components/notifications/NotificationCenter';
-import { Loader2, Command } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 
 interface DashboardLayoutProps {
   children: ReactNode;
@@ -79,17 +79,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         className="min-h-screen"
       >
         {/* Top bar */}
-        <header className="h-16 border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-30 flex items-center justify-between px-6">
-          <div className="flex items-center gap-4">
-            <div className="text-sm text-muted-foreground">
-              <kbd className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium bg-secondary rounded border border-border">
-                <Command className="h-3 w-3" />
-                <span>K</span>
-              </kbd>
-              <span className="ml-2">to open command palette</span>
-            </div>
-          </div>
-          
+        <header className="h-16 border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-30 flex items-center justify-end px-6">
           <div className="flex items-center gap-3">
             <NotificationCenter />
             <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">

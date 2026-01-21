@@ -48,7 +48,7 @@ export default function Sidebar() {
             animate={{ opacity: collapsed ? 0 : 1, width: collapsed ? 0 : 'auto' }}
             className="font-semibold text-foreground whitespace-nowrap overflow-hidden"
           >
-            ContentAccelerator
+            ContentAccel
           </motion.span>
         </div>
         <Button

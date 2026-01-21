@@ -43,9 +43,9 @@ export default function GoogleCalendarIntegration({
       const icsContent = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
-        'PRODID:-//ContentAccelerator//Calendar//EN',
+        'PRODID:-//ContentAccel//Calendar//EN',
         'BEGIN:VEVENT',
-        `UID:${Date.now()}@contentaccelerator.com`,
+        `UID:${Date.now()}@contentaccel.com`,
         `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, '').split('.')[0]}Z`,
         `DTSTART:${start}`,
         `DTEND:${end}`,

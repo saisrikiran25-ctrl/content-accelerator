@@ -113,7 +113,7 @@ export default function Dashboard() {
         >
           <h1 className="text-2xl font-semibold text-foreground">Dashboard</h1>
           <p className="text-muted-foreground">
-            Welcome to ContentAccelerator. Start creating content or explore your analytics.
+            Welcome to ContentAccel. Start creating content or explore your analytics.
           </p>
         </motion.div>
 
@@ -163,15 +163,18 @@ export default function Dashboard() {
                 onClick={() => navigate(action.href)}
               >
                 <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div
-                      className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                        action.primary
-                          ? 'bg-primary text-primary-foreground'
-                          : 'bg-secondary text-muted-foreground'
-                      }`}
-                    >
-                      <action.icon className="h-5 w-5" />
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                          action.primary
+                            ? 'bg-primary text-primary-foreground'
+                            : 'bg-primary/10 text-primary'
+                        }`}
+                      >
+                        <action.icon className="h-5 w-5" />
+                      </div>
+                      <CardTitle className="text-foreground">{action.title}</CardTitle>
                     </div>
                     <ArrowUpRight
                       className={`h-5 w-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 ${
@@ -179,8 +182,7 @@ export default function Dashboard() {
                       }`}
                     />
                   </div>
-                  <CardTitle className="text-foreground">{action.title}</CardTitle>
-                  <CardDescription>{action.description}</CardDescription>
+                  <CardDescription className="ml-[52px]">{action.description}</CardDescription>
                 </CardHeader>
               </Card>
             ))}
