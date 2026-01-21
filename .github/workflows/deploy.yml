@@ -34,9 +34,11 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
-          VITE_SUPABASE_PROJECT_ID: ${{ secrets.VITE_SUPABASE_PROJECT_ID }}
+          # Using inline values since these are public anon keys (safe to expose)
+          # These values are from the .env file which is already in the repository
+          VITE_SUPABASE_URL: "https://qharssnwpweoiderjylv.supabase.co"
+          VITE_SUPABASE_PUBLISHABLE_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFoYXJzc253cHdlb2lkZXJqeWx2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5NTU2NjcsImV4cCI6MjA4NDUzMTY2N30.EZ3ybieLZcH94QQtNvBHJZeQNeTiL6eXfbpghp6U7Ok"
+          VITE_SUPABASE_PROJECT_ID: "qharssnwpweoiderjylv"
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
