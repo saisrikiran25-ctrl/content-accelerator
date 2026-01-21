@@ -351,7 +351,7 @@ export const Constants = {
       content_status: ["draft", "scheduled", "published", "archived"],
       content_type: [
         "blog",
-        "linkedin",
+        "article",
         "case_study",
         "product_description",
         "email",
