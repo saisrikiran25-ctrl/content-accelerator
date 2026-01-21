@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ContentAccelerator Design System - Linear/Vercel Aesthetic */
+/* ContentAccel Design System - Linear/Vercel Aesthetic */
 
 @layer base {
   :root {
@@ -57,7 +57,7 @@
     --sidebar-border: 214 32% 91%;
     --sidebar-ring: 187 96% 42%;
 
-    /* Custom ContentAccelerator tokens */
+    /* Custom ContentAccel tokens */
     --gradient-primary: linear-gradient(135deg, hsl(187 96% 42%), hsl(199 89% 48%));
     --gradient-surface: linear-gradient(180deg, hsl(210 20% 98%), hsl(210 20% 96%));
     --shadow-sm: 0 1px 2px 0 hsl(222 84% 5% / 0.05);
@@ -112,7 +112,7 @@
     --sidebar-border: 217 33% 15%;
     --sidebar-ring: 187 96% 48%;
 
-    /* Custom ContentAccelerator tokens - dark */
+    /* Custom ContentAccel tokens - dark */
     --gradient-primary: linear-gradient(135deg, hsl(187 96% 48%), hsl(199 89% 55%));
     --gradient-surface: linear-gradient(180deg, hsl(222 47% 7%), hsl(222 47% 5%));
     --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.3);

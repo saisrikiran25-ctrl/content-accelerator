@@ -107,7 +107,7 @@ export default function Auth() {
             <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
               <Zap className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="text-xl font-semibold text-foreground">ContentAccelerator</span>
+            <span className="text-xl font-semibold text-foreground">ContentAccel</span>
           </div>
 
           <div className="space-y-8">
@@ -163,7 +163,7 @@ export default function Auth() {
             <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
               <Zap className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="text-xl font-semibold text-foreground">ContentAccelerator</span>
+            <span className="text-xl font-semibold text-foreground">ContentAccel</span>
           </div>
 
           <div className="space-y-6">

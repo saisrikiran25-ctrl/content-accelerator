@@ -1,4 +1,4 @@
-// Database types for ContentAccelerator
+// Database types for ContentAccel
 
 export type VerticalType = 'legal' | 'healthcare' | 'ecommerce' | 'tech' | 'accounting' | 'finance' | 'real_estate' | 'custom';
 export type ContentType = 'blog' | 'article' | 'case_study' | 'product_description' | 'email' | 'landing_page';
