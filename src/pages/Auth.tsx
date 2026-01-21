@@ -131,7 +131,7 @@ export default function Auth() {
                 'Vertical-specific content generation',
                 'Real-time SEO optimization',
                 'Brand voice consistency',
-                'Multi-channel publishing',
+                'Content calendar planning',
               ].map((feature, i) => (
                 <motion.div
                   key={feature}
