@@ -78,14 +78,17 @@ class ErrorBoundary extends Component<Props, State> {
                 >
                   Reload Page
                 </button>
-                <a
-                  href="https://github.com/saisrikiran25-ctrl/content-accelerator"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
-                >
-                  View Repository
-                </a>
+                {/* Only show repo link if on GitHub Pages (ends with github.io) */}
+                {window.location.hostname.endsWith('.github.io') && (
+                  <a
+                    href={`https://github.com/${window.location.pathname.split('/').filter(Boolean)[0]}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors"
+                  >
+                    View Repository
+                  </a>
+                )}
               </div>
             </div>
           </div>
