@@ -6,7 +6,6 @@ import {
   Sparkles,
   FileText,
   Calendar,
-  BarChart3,
   Settings,
   Briefcase,
   LayoutDashboard,
@@ -83,14 +82,6 @@ export default function CommandPalette() {
       action: () => navigate('/calendar'),
       category: 'navigation',
       shortcut: 'C',
-    },
-    {
-      id: 'analytics',
-      icon: BarChart3,
-      title: 'Analytics',
-      description: 'View performance metrics',
-      action: () => navigate('/analytics'),
-      category: 'navigation',
     },
     {
       id: 'brand-voice',
