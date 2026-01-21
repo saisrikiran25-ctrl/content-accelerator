@@ -193,11 +193,35 @@ export default function Settings() {
 
     setIsDeleting(true);
     try {
-      // Note: Actual account deletion should be handled by Supabase RLS policies
-      // and database triggers. For now, we'll sign out the user.
-      // In production, this would trigger a backend function to handle deletion.
+      // Delete all user data from related tables first
+      // This is safe because RLS policies ensure users can only delete their own data
       
-      toast.success('Account deletion request submitted');
+      // Delete brand voices
+      await supabase.from('brand_voices').delete().eq('user_id', user?.id);
+      
+      // Delete content pieces
+      await supabase.from('content_pieces').delete().eq('user_id', user?.id);
+      
+      // Delete content briefs
+      await supabase.from('content_briefs').delete().eq('user_id', user?.id);
+      
+      // Delete profile
+      await supabase.from('profiles').delete().eq('user_id', user?.id);
+      
+      // Finally, delete the auth user
+      // Note: This requires proper RLS policies and may need additional backend support
+      const { error } = await supabase.rpc('delete_user');
+      
+      if (error) {
+        console.error('Error deleting account:', error);
+        // If RPC function doesn't exist, just sign out
+        toast.warning('Account data cleared. Please contact support to complete deletion.');
+        await signOut();
+        navigate('/auth');
+        return;
+      }
+
+      toast.success('Account deleted successfully');
       await signOut();
       navigate('/auth');
     } catch (error) {
