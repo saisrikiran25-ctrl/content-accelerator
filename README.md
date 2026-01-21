@@ -65,22 +65,35 @@ This project is built with:
 ### Option 1: Deploy with Lovable
 Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
 
-### Option 2: Deploy to GitHub Pages (Free)
+### Option 2: Deploy to GitHub Pages (Free) ✅ CONFIGURED
 
-This repository is configured for GitHub Pages deployment. Follow these steps:
+**Good news!** This repository is already configured for automatic GitHub Pages deployment with embedded environment variables. No secrets configuration required!
 
-1. **Configure Secrets** (one-time setup):
-   - Go to repository **Settings** → **Secrets and variables** → **Actions**
-   - Add three secrets: `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `VITE_SUPABASE_PROJECT_ID`
+#### How it works:
+1. **Automatic Deployment**: Every push to `main` branch triggers a deployment
+2. **Environment Variables**: The workflow embeds the Supabase credentials during build (these are public anon keys, safe to expose)
+3. **Error Handling**: The app includes error boundaries to show helpful messages if anything goes wrong
 
-2. **Enable GitHub Pages**:
+#### To deploy:
+1. **Enable GitHub Pages**:
    - Go to **Settings** → **Pages**
    - Set **Source** to **GitHub Actions**
 
-3. **Deploy**:
-   - Push to `main` branch or manually trigger the workflow in **Actions** tab
+2. **Push changes or trigger manually**:
+   - Push to `main` branch, or
+   - Go to **Actions** tab → **Deploy to GitHub Pages** → **Run workflow**
 
-Your site will be live at: **https://saisrikiran25-ctrl.github.io/content-accelerator/**
+3. **Access your site**:
+   - Your site will be live at: `https://saisrikiran25-ctrl.github.io/content-accelerator/`
+
+#### Alternative: Using GitHub Secrets (Optional)
+If you want to use different Supabase credentials or keep them in secrets:
+1. Go to **Settings** → **Secrets and variables** → **Actions**
+2. Add these secrets:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_PUBLISHABLE_KEY`
+   - `VITE_SUPABASE_PROJECT_ID`
+3. Update `.github/workflows/deploy.yml` to use `${{ secrets.VARIABLE_NAME }}` instead of inline values
 
 📖 **[See detailed deployment guide →](./DEPLOYMENT.md)**
 
