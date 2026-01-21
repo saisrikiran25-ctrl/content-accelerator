@@ -62,7 +62,27 @@ This project is built with:
 
 ## How can I deploy this project?
 
+### Option 1: Deploy with Lovable
 Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+
+### Option 2: Deploy to GitHub Pages (Free)
+
+This repository is configured for GitHub Pages deployment. Follow these steps:
+
+1. **Configure Secrets** (one-time setup):
+   - Go to repository **Settings** → **Secrets and variables** → **Actions**
+   - Add three secrets: `VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `VITE_SUPABASE_PROJECT_ID`
+
+2. **Enable GitHub Pages**:
+   - Go to **Settings** → **Pages**
+   - Set **Source** to **GitHub Actions**
+
+3. **Deploy**:
+   - Push to `main` branch or manually trigger the workflow in **Actions** tab
+
+Your site will be live at: **https://saisrikiran25-ctrl.github.io/content-accelerator/**
+
+📖 **[See detailed deployment guide →](./DEPLOYMENT.md)**
 
 ## Can I connect a custom domain to my Lovable project?
 
