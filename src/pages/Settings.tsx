@@ -59,7 +59,7 @@ const verticalOptions = [
 ];
 
 export default function Settings() {
-  const { profile, updateProfile, isLoading } = useProfile();
+  const { profile, updateProfile, createProfile, isLoading } = useProfile();
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
@@ -149,11 +149,18 @@ export default function Settings() {
 
     setIsSaving(true);
     try {
-      await updateProfile.mutateAsync({
+      const profileData = {
         display_name: displayName.trim(),
         company_name: companyName.trim() || null,
         vertical,
-      });
+      };
+
+      // Check if profile exists, if not create it
+      if (profile) {
+        await updateProfile.mutateAsync(profileData);
+      } else {
+        await createProfile.mutateAsync(profileData);
+      }
 
       toast.success('Settings saved successfully!', {
         duration: 3000,
