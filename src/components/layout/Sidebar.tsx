@@ -20,7 +20,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 
 const navItems = [
   { icon: LayoutDashboard, label: 'Dashboard', href: '/' },
-  { icon: Sparkles, label: 'Content Brief', href: '/brief' },
+  { icon: Sparkles, label: 'Create Content', href: '/brief' },
   { icon: FileText, label: 'Content Library', href: '/library' },
   { icon: Calendar, label: 'Calendar', href: '/calendar' },
   { icon: BarChart3, label: 'Analytics', href: '/analytics' },
