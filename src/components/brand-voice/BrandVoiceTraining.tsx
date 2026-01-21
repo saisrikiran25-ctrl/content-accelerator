@@ -86,7 +86,7 @@ export default function BrandVoiceTraining() {
   });
 
   // Update local state when data loads
-  useState(() => {
+  useEffect(() => {
     if (brandVoice) {
       setValues({
         formality: brandVoice.formality,
@@ -95,7 +95,7 @@ export default function BrandVoiceTraining() {
         confidence: brandVoice.confidence,
       });
     }
-  });
+  }, [brandVoice]);
 
   // Save mutation
   const saveMutation = useMutation({

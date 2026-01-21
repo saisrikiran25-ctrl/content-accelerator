@@ -96,6 +96,7 @@ export default function ContentGenerator() {
   const { profile } = useProfile();
   
   const brief = location.state?.brief as ContentBriefFormData | undefined;
+  const readOnly = location.state?.readOnly || false;
   
   const [content, setContent] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
@@ -254,23 +255,27 @@ export default function ContentGenerator() {
               <p className="text-muted-foreground text-sm mt-1">{brief.topic}</p>
             </div>
             <div className="flex items-center gap-3">
-              {isGenerating ? (
-                <Button
-                  onClick={stopGeneration}
-                  variant="destructive"
-                  className="gap-2"
-                >
-                  <StopCircle className="h-4 w-4" />
-                  Stop
-                </Button>
-              ) : (
-                <Button
-                  onClick={startGeneration}
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2"
-                >
-                  <Sparkles className="h-4 w-4" />
-                  {content ? 'Regenerate' : 'Generate'}
-                </Button>
+              {!readOnly && (
+                <>
+                  {isGenerating ? (
+                    <Button
+                      onClick={stopGeneration}
+                      variant="destructive"
+                      className="gap-2"
+                    >
+                      <StopCircle className="h-4 w-4" />
+                      Stop
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={startGeneration}
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2"
+                    >
+                      <Sparkles className="h-4 w-4" />
+                      {content ? 'Regenerate' : 'Generate'}
+                    </Button>
+                  )}
+                </>
               )}
             </div>
           </motion.div>
@@ -283,17 +288,24 @@ export default function ContentGenerator() {
                   <div className="w-16 h-16 rounded-2xl bg-secondary flex items-center justify-center mb-4">
                     <Sparkles className="h-8 w-8 text-muted-foreground" />
                   </div>
-                  <h3 className="text-lg font-medium text-foreground mb-2">Ready to Generate</h3>
+                  <h3 className="text-lg font-medium text-foreground mb-2">
+                    {readOnly ? 'No Content Generated' : 'Ready to Generate'}
+                  </h3>
                   <p className="text-sm text-muted-foreground max-w-sm mb-6">
-                    Click the Generate button to create SEO-optimized content based on your brief.
+                    {readOnly 
+                      ? 'This content brief has not been generated yet.'
+                      : 'Click the Generate button to create SEO-optimized content based on your brief.'
+                    }
                   </p>
-                  <Button
-                    onClick={startGeneration}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground"
-                  >
-                    <Sparkles className="h-4 w-4 mr-2" />
-                    Start Generating
-                  </Button>
+                  {!readOnly && (
+                    <Button
+                      onClick={startGeneration}
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                    >
+                      <Sparkles className="h-4 w-4 mr-2" />
+                      Start Generating
+                    </Button>
+                  )}
                 </div>
               )}
 
@@ -337,7 +349,7 @@ export default function ContentGenerator() {
               >
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <CheckCircle2 className="h-4 w-4 text-success" />
-                  <span>{seoMetrics.wordCount.toLocaleString()} words generated</span>
+                  <span>{seoMetrics.wordCount.toLocaleString()} words {readOnly ? 'in content' : 'generated'}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Button variant="outline" size="sm" onClick={copyToClipboard}>
@@ -348,10 +360,12 @@ export default function ContentGenerator() {
                     <Download className="h-4 w-4 mr-2" />
                     Download
                   </Button>
-                  <Button variant="outline" size="sm" onClick={startGeneration}>
-                    <RotateCcw className="h-4 w-4 mr-2" />
-                    Regenerate
-                  </Button>
+                  {!readOnly && (
+                    <Button variant="outline" size="sm" onClick={startGeneration}>
+                      <RotateCcw className="h-4 w-4 mr-2" />
+                      Regenerate
+                    </Button>
+                  )}
                 </div>
               </motion.div>
             )}

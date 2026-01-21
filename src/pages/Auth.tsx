@@ -147,9 +147,7 @@ export default function Auth() {
             </div>
           </div>
 
-          <p className="text-sm text-muted-foreground">
-            Trusted by 500+ agencies worldwide
-          </p>
+
         </div>
       </div>
 

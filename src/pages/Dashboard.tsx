@@ -9,60 +9,89 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useContentBriefs } from '@/hooks/useContentBrief';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
-const stats = [
-  {
-    title: 'Content Generated',
-    value: '0',
-    subtitle: 'pieces this month',
-    icon: FileText,
-    trend: null,
-  },
-  {
-    title: 'Hours Saved',
-    value: '0',
-    subtitle: 'this month',
-    icon: Clock,
-    trend: null,
-  },
-  {
-    title: 'Avg. SEO Score',
-    value: '--',
-    subtitle: 'across all content',
-    icon: Target,
-    trend: null,
-  },
-  {
-    title: 'Organic Traffic',
-    value: '--',
-    subtitle: 'monthly visitors',
-    icon: TrendingUp,
-    trend: null,
-  },
-];
-
-const quickActions = [
-  {
-    title: 'Create Content Brief',
-    description: 'Start a new AI-powered content piece',
-    icon: Sparkles,
-    href: '/brief',
-    primary: true,
-  },
-  {
-    title: 'View Library',
-    description: 'Browse your content collection',
-    icon: FileText,
-    href: '/library',
-    primary: false,
-  },
-];
-
 export default function Dashboard() {
   const navigate = useNavigate();
+  const { briefs } = useContentBriefs();
+
+  // Calculate actual statistics from briefs
+  const totalContent = briefs.length;
+  const thisMonthContent = briefs.filter(brief => {
+    const createdDate = new Date(brief.created_at);
+    const now = new Date();
+    return createdDate.getMonth() === now.getMonth() && 
+           createdDate.getFullYear() === now.getFullYear();
+  }).length;
+  
+  // Estimate hours saved (average 2 hours per content piece)
+  const hoursSaved = Math.round(thisMonthContent * 2);
+  
+  // Calculate average word count for SEO score estimation
+  const avgWordCount = briefs.length > 0 
+    ? Math.round(briefs.reduce((sum, brief) => sum + brief.word_count, 0) / briefs.length)
+    : 0;
+  
+  // Estimate SEO score based on word count and keywords
+  const avgSEOScore = briefs.length > 0
+    ? Math.round(briefs.reduce((sum, brief) => {
+        // Simple estimation: base score + keyword count + word count factor
+        const keywordScore = Math.min(brief.keywords.length * 5, 25);
+        const wordScore = brief.word_count >= 1000 ? 25 : Math.round((brief.word_count / 1000) * 25);
+        return sum + 50 + keywordScore + wordScore;
+      }, 0) / briefs.length)
+    : 0;
+
+  const stats = [
+    {
+      title: 'Content Generated',
+      value: thisMonthContent.toString(),
+      subtitle: 'pieces this month',
+      icon: FileText,
+      trend: null,
+    },
+    {
+      title: 'Hours Saved',
+      value: hoursSaved.toString(),
+      subtitle: 'this month',
+      icon: Clock,
+      trend: null,
+    },
+    {
+      title: 'Avg. SEO Score',
+      value: avgSEOScore > 0 ? avgSEOScore.toString() : '--',
+      subtitle: 'across all content',
+      icon: Target,
+      trend: null,
+    },
+    {
+      title: 'Total Content',
+      value: totalContent.toString(),
+      subtitle: 'all time',
+      icon: TrendingUp,
+      trend: null,
+    },
+  ];
+
+  const quickActions = [
+    {
+      title: 'Create Content Brief',
+      description: 'Start a new AI-powered content piece',
+      icon: Sparkles,
+      href: '/brief',
+      primary: true,
+    },
+    {
+      title: 'View Library',
+      description: 'Browse your content collection',
+      icon: FileText,
+      href: '/library',
+      primary: false,
+    },
+  ];
 
   return (
     <DashboardLayout>

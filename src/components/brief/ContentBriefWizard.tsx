@@ -127,6 +127,9 @@ export default function ContentBriefWizard() {
   const prevStep = () => {
     if (currentStep > 1) {
       setCurrentStep(prev => prev - 1);
+    } else {
+      // If on step 1, go back to previous page (likely calendar)
+      navigate(-1);
     }
   };
 
@@ -496,7 +499,6 @@ export default function ContentBriefWizard() {
           <Button
             variant="outline"
             onClick={prevStep}
-            disabled={currentStep === 1}
             className="border-border hover:bg-secondary"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
