@@ -136,7 +136,10 @@ export default function Settings() {
   }, [displayName, companyName, vertical, profile]);
 
   // Check if form is valid and can be saved
-  const isFormValid = displayName.trim().length >= 2 && displayName.trim().length <= 50;
+  const isFormValid = 
+    displayName.trim().length >= 2 && 
+    displayName.trim().length <= 50 &&
+    companyName.trim().length <= 100;
   const canSave = isFormValid && (isDirty || !profile) && !isSaving;
 
   const handleSave = async () => {
