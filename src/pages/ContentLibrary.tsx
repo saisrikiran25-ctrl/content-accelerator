@@ -26,7 +26,7 @@ const statusColors: Record<string, string> = {
 
 const contentTypeLabels: Record<string, string> = {
   blog: 'Blog Post',
-  linkedin: 'LinkedIn',
+  article: 'Article',
   case_study: 'Case Study',
   product_description: 'Product',
   email: 'Email',

@@ -6,7 +6,6 @@ import {
   LayoutDashboard,
   FileText,
   Calendar,
-  BarChart3,
   Settings,
   LogOut,
   ChevronLeft,
@@ -23,7 +22,6 @@ const navItems = [
   { icon: Sparkles, label: 'Create Content', href: '/brief' },
   { icon: FileText, label: 'Content Library', href: '/library' },
   { icon: Calendar, label: 'Calendar', href: '/calendar' },
-  { icon: BarChart3, label: 'Analytics', href: '/analytics' },
   { icon: Briefcase, label: 'Brand Voice', href: '/brand-voice' },
 ];
 

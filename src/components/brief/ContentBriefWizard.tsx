@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import {
   FileText,
-  Linkedin,
+  FileEdit,
   Briefcase,
   ShoppingBag,
   Mail,
@@ -30,7 +30,7 @@ import DashboardLayout from '@/components/layout/DashboardLayout';
 
 const contentTypes: { id: ContentType; name: string; description: string; icon: React.ElementType }[] = [
   { id: 'blog', name: 'Blog Post', description: 'Long-form SEO content', icon: FileText },
-  { id: 'linkedin', name: 'LinkedIn Article', description: 'Professional thought leadership', icon: Linkedin },
+  { id: 'article', name: 'Article', description: 'Professional thought leadership', icon: FileEdit },
   { id: 'case_study', name: 'Case Study', description: 'Client success stories', icon: Briefcase },
   { id: 'product_description', name: 'Product Description', description: 'E-commerce product copy', icon: ShoppingBag },
   { id: 'email', name: 'Email Newsletter', description: 'Engaging email content', icon: Mail },

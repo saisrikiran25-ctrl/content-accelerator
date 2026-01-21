@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/lib/auth';
 import Sidebar from './Sidebar';
+import NotificationCenter from '@/components/notifications/NotificationCenter';
 import { Loader2, Command } from 'lucide-react';
 
 interface DashboardLayoutProps {
@@ -76,6 +77,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </div>
           
           <div className="flex items-center gap-3">
+            <NotificationCenter />
             <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
               <span className="text-sm font-medium text-primary">
                 {user?.email?.charAt(0).toUpperCase()}

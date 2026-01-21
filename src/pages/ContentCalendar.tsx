@@ -22,6 +22,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 import { useContentBriefs } from '@/hooks/useContentBrief';
 import DashboardLayout from '@/components/layout/DashboardLayout';
+import ScheduleReminderDialog from '@/components/calendar/ScheduleReminderDialog';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -77,7 +78,7 @@ export default function ContentCalendar() {
           <div>
             <h1 className="text-2xl font-semibold text-foreground">Content Calendar</h1>
             <p className="text-muted-foreground">
-              Plan and schedule your content across channels.
+              Plan your content schedule and set reminders.
             </p>
           </div>
           <Button
@@ -216,14 +217,23 @@ export default function ContentCalendar() {
                   <h3 className="text-lg font-medium text-foreground">
                     {format(selectedDate, 'EEEE, MMMM d, yyyy')}
                   </h3>
-                  <Button
-                    onClick={() => navigate('/brief')}
-                    variant="outline"
-                    size="sm"
-                  >
-                    <Plus className="h-4 w-4 mr-2" />
-                    Add Content
-                  </Button>
+                  <div className="flex gap-2">
+                    {getBriefsForDate(selectedDate).length > 0 && (
+                      <ScheduleReminderDialog
+                        contentTitle={getBriefsForDate(selectedDate)[0].title}
+                        contentId={getBriefsForDate(selectedDate)[0].id}
+                        scheduledDate={selectedDate}
+                      />
+                    )}
+                    <Button
+                      onClick={() => navigate('/brief')}
+                      variant="outline"
+                      size="sm"
+                    >
+                      <Plus className="h-4 w-4 mr-2" />
+                      Add Content
+                    </Button>
+                  </div>
                 </div>
 
                 {getBriefsForDate(selectedDate).length === 0 ? (

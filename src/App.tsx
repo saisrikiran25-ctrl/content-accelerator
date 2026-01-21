@@ -12,8 +12,7 @@ import ContentLibrary from "./pages/ContentLibrary";
 import ContentGenerator from "./pages/ContentGenerator";
 import ContentCalendar from "./pages/ContentCalendar";
 import BrandVoice from "./pages/BrandVoice";
-import Analytics from "./pages/Analytics";
-import ComingSoon from "./pages/ComingSoon";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import CommandPalette from "./components/CommandPalette";
 
@@ -36,8 +35,7 @@ const App = () => (
             <Route path="/generate" element={<ContentGenerator />} />
             <Route path="/calendar" element={<ContentCalendar />} />
             <Route path="/brand-voice" element={<BrandVoice />} />
-            <Route path="/analytics" element={<Analytics />} />
-            <Route path="/settings" element={<ComingSoon title="Settings" description="Manage your account, integrations, and preferences." />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
