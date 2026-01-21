@@ -44,7 +44,7 @@ import { useProfile } from '@/hooks/useProfile';
 import { useAuth } from '@/lib/auth';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
-import { VerticalType } from '@/types/database';
+import { VerticalType, BrandVoice } from '@/types/database';
 import { cn } from '@/lib/utils';
 
 const verticalOptions = [
@@ -59,7 +59,7 @@ const verticalOptions = [
 ];
 
 export default function Settings() {
-  const { profile, updateProfile, isLoading } = useProfile();
+  const { profile, updateProfile, createProfile, isLoading } = useProfile();
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
 
@@ -80,7 +80,7 @@ export default function Settings() {
   const [isDeleting, setIsDeleting] = useState(false);
 
   // Brand voice state
-  const [activeBrandVoice, setActiveBrandVoice] = useState<any>(null);
+  const [activeBrandVoice, setActiveBrandVoice] = useState<BrandVoice | null>(null);
 
   // Load initial data
   useEffect(() => {
@@ -106,6 +106,7 @@ export default function Settings() {
     if (user?.id) {
       loadActiveBrandVoice();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.id]);
 
   const loadActiveBrandVoice = async () => {
@@ -149,11 +150,18 @@ export default function Settings() {
 
     setIsSaving(true);
     try {
-      await updateProfile.mutateAsync({
+      const profileData = {
         display_name: displayName.trim(),
         company_name: companyName.trim() || null,
         vertical,
-      });
+      };
+
+      // Check if profile exists, if not create it
+      if (profile) {
+        await updateProfile.mutateAsync(profileData);
+      } else {
+        await createProfile.mutateAsync(profileData);
+      }
 
       toast.success('Settings saved successfully!', {
         duration: 3000,

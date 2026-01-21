@@ -131,7 +131,10 @@ export default function ContentLibrary() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 + index * 0.05 }}
               >
-                <Card className="border-border bg-card hover:border-primary/30 transition-colors cursor-pointer">
+                <Card 
+                  className="border-border bg-card hover:border-primary/30 transition-colors cursor-pointer"
+                  onClick={() => navigate('/generate', { state: { brief, readOnly: true } })}
+                >
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between">
                       <div className="space-y-1">
